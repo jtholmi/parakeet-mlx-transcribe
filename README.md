@@ -2,6 +2,8 @@
 
 Real-time speech-to-text transcription on macOS using parakeet-mlx. Press a hotkey to record, get instant transcription with automatic paste.
 
+In this fork the hotkey was changed from **Cmd + Shift + ;** to **Cmd + Opt + Shift**, which is compatible with macOS 26 Tahoe.
+
 ## Prerequisites
 
 1. **ffmpeg** - `brew install ffmpeg`
@@ -39,9 +41,9 @@ python live_stt.py --quiet
 ## How to Use
 
 1. Run the script
-2. Press **Cmd + Shift + ;** to start recording
+2. Press **Cmd + Opt + Shift** to start recording
 3. Speak into your microphone
-4. Press **Cmd + Shift + ;** again to stop
+4. Press **Cmd + Opt + Shift** again to stop
 5. Transcription auto-pastes to your active text field
 
 ## Configuration

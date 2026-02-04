@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Live Speech-to-Text with Keyboard Hotkey Control with parakeet-mlx
-Press Cmd + Shift + ; to start/stop recording
+Press Cmd + Opt + Shift to start/stop recording
 """
 
 import threading
@@ -30,12 +30,12 @@ def on_press(key):
     hotkey_pressed.add(key)
 
     cmd_pressed = (Key.cmd in hotkey_pressed or Key.cmd_l in hotkey_pressed or Key.cmd_r in hotkey_pressed)
+    opt_pressed = (Key.alt in hotkey_pressed or Key.alt_l in hotkey_pressed or Key.alt_r in hotkey_pressed)
     shift_pressed = (Key.shift in hotkey_pressed or Key.shift_l in hotkey_pressed or Key.shift_r in hotkey_pressed)
 
-    if cmd_pressed and shift_pressed:
-        if hasattr(key, 'char') and key.char in [';', ':']:
-            toggle_recording()
-            return
+    if cmd_pressed and opt_pressed and shift_pressed:
+        toggle_recording()
+        return
 
 
 def on_release(key):
@@ -49,7 +49,7 @@ def toggle_recording():
     if not recording:
         recording = True
         if not quiet_mode:
-            print("\nRecording started (Press Cmd + Shift + ; to stop)\n")
+            print("\nRecording started (Press Cmd + Opt + Shift to stop)\n")
     else:
         recording = False
         if not quiet_mode:
@@ -161,7 +161,7 @@ def main():
         print(f"Model loaded: {MODEL_NAME}")
         print(f"Sample rate: {sample_rate} Hz")
         print("\n" + "=" * 60)
-        print("Press Cmd + Shift + ; to start/stop recording")
+        print("Press Cmd + Opt + Shift to start/stop recording")
         print("Transcription will auto-paste when stopped")
         print("Press Ctrl+C to exit")
         print("=" * 60 + "\n")
